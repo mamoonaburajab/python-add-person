@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="form">
+                <h2>Insert Student Details</h2>
+                <form id="studentForm" method="post" action="">
+                    {% csrf_token %}
+                    <input type="text" id="name" name="name" placeholder="Enter the Student Name" value="{{ form.name.value }}" required>
+                    <input type="email" id="email" name="email" placeholder="Enter the Student Email" value="{{ form.email.value }}" required>
+                    <input type="number" id="age" name="age" placeholder="Enter the Student Age" value="{{ form.age.value }}" required>
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled {% if not form.gender.value %}selected{% endif %}>Select Gender</option>
+                        <option value="male" {% if form.gender.value == "male" %}selected{% endif %}>male</option>
+                        <option value="female" {% if form.gender.value == "female" %}selected{% endif %}>female</option>
+                        <option value="other" {% if form.gender.value == "other" %}selected{% endif %}>other</option>
+                    </select>
+                    <button type="submit" class="formBtton">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
